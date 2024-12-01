@@ -1,38 +1,48 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
+const FormContainer = styled.div`
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: var(--branco);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
+const Title = styled.h2`
+  text-align: center;
+  color: var(--roxo);
+`;
 
 const LoginForm = ({ onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onSubmit({ email, password });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="email">Email:</label>
+    <FormContainer>
+      <Title>Login</Title>
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
-          id="email"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
-      </div>
-      <div>
-        <label htmlFor="password">Senha:</label>
         <input
           type="password"
-          id="password"
+          placeholder="Senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
         />
-      </div>
-      <button type="submit">Entrar</button>
-    </form>
+        <button type="submit">Entrar</button>
+      </form>
+    </FormContainer>
   );
 };
 

@@ -4,17 +4,21 @@ import CreatePlaylistPage from "./pages/CreatePlaylistPage";
 import LoginPage from "./pages/LoginPage";
 import LoginLocalPage from "./pages/LoginLocalPage";
 import PlaylistPage from "./pages/PlaylistPage";
+import GlobalStyle from "./styles/GlobalStyle";
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/login-local" element={<LoginLocalPage />} />
-        <Route path="/create-playlist" element={<CreatePlaylistPage />} />
-        <Route path="/playlists/:id" element={<PlaylistPage />} />
-      </Routes>
-    </Router>
+    <>
+      <GlobalStyle />
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login-local" element={<LoginLocalPage />} />
+          <Route path="/create-playlist" element={<CreatePlaylistPage />} />
+          <Route path="/playlists/:id" element={<PlaylistPage />} />
+        </Routes>
+      </Router>
+    </>
   );
 };
 

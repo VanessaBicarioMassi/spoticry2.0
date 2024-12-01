@@ -1,6 +1,6 @@
 import React from "react";
-import { login } from "../services/authServices";
 import LoginForm from "../components/LoginForm";
+import { login } from "../services/authServices";
 
 const LoginPage = () => {
   const handleLogin = async ({ email, password }) => {
@@ -9,13 +9,12 @@ const LoginPage = () => {
       alert("Login realizado com sucesso!");
       console.log(data);
     } catch (error) {
-      alert(error);
+      alert("Erro ao realizar login");
     }
   };
 
   return (
     <div>
-      <h1>Login</h1>
       <LoginForm onSubmit={handleLogin} />
     </div>
   );
