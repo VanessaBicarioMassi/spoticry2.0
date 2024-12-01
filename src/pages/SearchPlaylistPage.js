@@ -7,9 +7,9 @@ const SearchPlaylistPage = () => {
   const [playlists, setPlaylists] = useState([]);
   const [error, setError] = useState(null);
 
-  const handleSearch = async (title) => {
+  const handleSearch = async (searchTerm) => {
     try {
-      const data = await searchPlaylists(title);
+      const data = await searchPlaylists(searchTerm);
       setPlaylists(data);
       setError(null);
     } catch (err) {
