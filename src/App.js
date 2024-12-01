@@ -15,7 +15,8 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/login-local" element={<LoginLocalPage />} />
           <Route path="/create-playlist" element={<CreatePlaylistPage />} />
-          <Route path="/playlists/:id" element={<PlaylistPage />} />
+          <Route path="/playlists" element={<PlaylistPage />} /> {/* Listar todas */}
+          <Route path="/playlists/:id" element={<PlaylistPage />} /> {/* Detalhes */}
         </Routes>
       </Router>
     </>

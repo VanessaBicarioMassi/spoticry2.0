@@ -1,36 +1,47 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getPlaylistById } from "../services/playlistServices";
-import PlaylistDetails from "../components/PlaylistDetails";
+import React from "react";
+import styled from "styled-components";
 
-const PlaylistPage = () => {
-  const { id } = useParams(); // Obtém o ID da URL
-  const [playlist, setPlaylist] = useState(null);
-  const [error, setError] = useState(null);
+const PlaylistContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+`;
 
-  useEffect(() => {
-    const fetchPlaylist = async () => {
-      try {
-        const data = await getPlaylistById(id);
-        setPlaylist(data);
-      } catch (err) {
-        setError(err);
-      }
-    };
+const PlaylistCard = styled.div`
+  background: var(--branco);
+  border: 1px solid var(--turquesa);
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-    fetchPlaylist();
-  }, [id]);
+  h3 {
+    color: var(--turquesa);
+    margin-bottom: 10px;
+  }
 
-  if (error) {
-    return <p>Erro ao carregar a playlist: {error}</p>;
+  p {
+    color: var(--cinza-escuro);
+  }
+`;
+
+const PlaylistList = ({ playlists }) => {
+  if (!playlists || playlists.length === 0) {
+    return <p>Nenhuma playlist encontrada.</p>;
   }
 
   return (
-    <div>
-      <h1>Detalhes da Playlist</h1>
-      <PlaylistDetails playlist={playlist} />
-    </div>
+    <PlaylistContainer>
+      {playlists.map((playlist) => (
+        <PlaylistCard key={playlist.id}>
+          <h3>{playlist.name}</h3>
+          <p>{playlist.description}</p>
+        </PlaylistCard>
+      ))}
+    </PlaylistContainer>
   );
 };
 
-export default PlaylistPage;
+export default PlaylistList;
