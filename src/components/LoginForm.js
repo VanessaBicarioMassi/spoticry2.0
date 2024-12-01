@@ -10,11 +10,6 @@ const FormContainer = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-const Title = styled.h2`
-  text-align: center;
-  color: var(--roxo);
-`;
-
 const LoginForm = ({ onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,19 +21,21 @@ const LoginForm = ({ onSubmit }) => {
 
   return (
     <FormContainer>
-      <Title>Login</Title>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
-          placeholder="Email"
+          placeholder="E-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           type="password"
           placeholder="Senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <button type="submit">Entrar</button>
       </form>

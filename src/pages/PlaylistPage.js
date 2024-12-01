@@ -1,47 +1,35 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import { getAllPlaylists } from "../services/playlistServices";
+import PlaylistList from "../components/PlaylistList";
 
-const PlaylistContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-`;
+const PlaylistPage = () => {
+  const [playlists, setPlaylists] = useState([]);
+  const [error, setError] = useState(null);
 
-const PlaylistCard = styled.div`
-  background: var(--branco);
-  border: 1px solid var(--turquesa);
-  border-radius: 10px;
-  padding: 20px;
-  width: 300px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      try {
+        const data = await getAllPlaylists();
+        setPlaylists(data);
+        setError(null);
+      } catch (err) {
+        setError(err.message || "Erro ao carregar as playlists");
+      }
+    };
 
-  h3 {
-    color: var(--turquesa);
-    margin-bottom: 10px;
-  }
+    fetchPlaylists();
+  }, []);
 
-  p {
-    color: var(--cinza-escuro);
-  }
-`;
-
-const PlaylistList = ({ playlists }) => {
-  if (!playlists || playlists.length === 0) {
-    return <p>Nenhuma playlist encontrada.</p>;
+  if (error) {
+    return <p style={{ color: "red" }}>{error}</p>;
   }
 
   return (
-    <PlaylistContainer>
-      {playlists.map((playlist) => (
-        <PlaylistCard key={playlist.id}>
-          <h3>{playlist.name}</h3>
-          <p>{playlist.description}</p>
-        </PlaylistCard>
-      ))}
-    </PlaylistContainer>
+    <div>
+      <h1>Todas as Playlists</h1>
+      <PlaylistList playlists={playlists} />
+    </div>
   );
 };
 
-export default PlaylistList;
+export default PlaylistPage;

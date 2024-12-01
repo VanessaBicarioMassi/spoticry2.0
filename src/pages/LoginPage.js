@@ -1,15 +1,15 @@
 import React from "react";
-import LoginForm from "../components/LoginForm";
 import { login } from "../services/authServices";
+import LoginForm from "../components/LoginForm";
 
 const LoginPage = () => {
   const handleLogin = async ({ email, password }) => {
     try {
       const data = await login(email, password);
-      alert("Login realizado com sucesso!");
-      console.log(data);
+      alert(`Login realizado com sucesso! Token: ${data.token}`);
+      console.log(data); 
     } catch (error) {
-      alert("Erro ao realizar login");
+      alert(error || "Erro ao realizar login");
     }
   };
 
