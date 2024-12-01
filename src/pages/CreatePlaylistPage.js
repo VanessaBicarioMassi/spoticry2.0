@@ -1,13 +1,13 @@
 import React from "react";
-import { createPlaylist } from "../services/playlistServices"; 
-import CreatePlaylistForm from "../components/CreatePlaylistForm"; 
+import { createPlaylist } from "../services/playlistServices";
+import CreatePlaylistForm from "../components/CreatePlaylistForm";
 
 const CreatePlaylistPage = () => {
   const handleCreatePlaylist = async ({ name, description, cover }) => {
     try {
       const data = await createPlaylist(name, description, cover);
       alert("Playlist criada com sucesso!");
-      console.log("Nova playlist:", data);
+      console.log(data);
     } catch (error) {
       alert(error);
     }

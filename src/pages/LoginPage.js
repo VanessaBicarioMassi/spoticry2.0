@@ -1,13 +1,13 @@
 import React from "react";
-import { login } from "../services/authService";
-import LoginForm from "./components/LoginForm";
+import { login } from "../services/authServices";
+import LoginForm from "../components/LoginForm";
 
 const LoginPage = () => {
-  const handleLogin = async (credentials) => {
+  const handleLogin = async ({ email, password }) => {
     try {
-      const data = await login(credentials.email, credentials.password);
-      localStorage.setItem("token", data.token); 
-      alert("Login bem-sucedido!");
+      const data = await login(email, password);
+      alert("Login realizado com sucesso!");
+      console.log(data);
     } catch (error) {
       alert(error);
     }
