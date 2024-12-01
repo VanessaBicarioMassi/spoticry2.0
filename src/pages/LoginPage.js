@@ -1,6 +1,6 @@
 import React from "react";
 import { login } from "../services/authService";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "./components/LoginForm";
 
 const LoginPage = () => {
   const handleLogin = async (credentials) => {
