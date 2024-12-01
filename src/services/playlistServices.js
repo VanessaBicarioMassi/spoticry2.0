@@ -53,3 +53,13 @@ export const getPlaylistTracks = async (playlistId) => {
     throw error.response?.data?.message || "Erro ao buscar as faixas da playlist";
   }
 };
+
+// Adicionar faixa à Playlist
+export const addTrackToPlaylist = async (playlistId, trackData) => {
+  try {
+    const response = await apiClient.post(`/playlists/${playlistId}/tracks`, trackData);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.message || "Erro ao adicionar a faixa na playlist";
+  }
+};
