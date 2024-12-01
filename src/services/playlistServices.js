@@ -43,3 +43,13 @@ export const searchPlaylists = async (searchTerm) => {
     throw error.response?.data?.message || "Erro ao buscar playlists";
   }
 };
+
+// Obter faixas de uma Playlist
+export const getPlaylistTracks = async (playlistId) => {
+  try {
+    const response = await apiClient.get(`/playlists/${playlistId}/tracks`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.message || "Erro ao buscar as faixas da playlist";
+  }
+};

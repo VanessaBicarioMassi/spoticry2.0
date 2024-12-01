@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import LoginLocalPage from "./pages/LoginLocalPage";
 import PlaylistPage from "./pages/PlaylistPage";
 import SearchPlaylistPage from "./pages/SearchPlaylistPage";
+import PlaylistTracksPage from "./pages/PlaylistTracksPage"; // Nova página
 import GlobalStyle from "./styles/GlobalStyle";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/playlists" element={<PlaylistPage />} />
           <Route path="/playlists/search" element={<SearchPlaylistPage />} />
           <Route path="/playlists/:id" element={<PlaylistPage />} />
+          <Route path="/playlists/:id/tracks" element={<PlaylistTracksPage />} />
         </Routes>
       </Router>
     </>
