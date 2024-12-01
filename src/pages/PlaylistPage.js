@@ -1,47 +1,54 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getAllPlaylists, getPlaylistById } from "../services/playlistServices";
+import PlaylistList from "../components/PlaylistList";
 
-const PlaylistContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-`;
+const PlaylistPage = () => {
+  const { id } = useParams();
+  const [playlists, setPlaylists] = useState([]);
+  const [playlistDetails, setPlaylistDetails] = useState(null);
+  const [error, setError] = useState(null);
 
-const PlaylistCard = styled.div`
-  background: var(--branco);
-  border: 1px solid var(--turquesa);
-  border-radius: 10px;
-  padding: 20px;
-  width: 300px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      try {
+        const data = id
+          ? await getPlaylistById(id)
+          : await getAllPlaylists();
+        id ? setPlaylistDetails(data) : setPlaylists(data);
+        setError(null);
+      } catch (err) {
+        setError(err.message || "Erro ao carregar playlists");
+      }
+    };
 
-  h3 {
-    color: var(--turquesa);
-    margin-bottom: 10px;
+    fetchPlaylists();
+  }, [id]);
+
+  if (error) {
+    return <p style={{ color: "red" }}>{error}</p>;
   }
 
-  p {
-    color: var(--cinza-escuro);
-  }
-`;
-
-const PlaylistList = ({ playlists }) => {
-  if (!playlists || playlists.length === 0) {
-    return <p>Nenhuma playlist encontrada.</p>;
+  if (id && playlistDetails) {
+    return (
+      <div>
+        <h1>{playlistDetails.name}</h1>
+        <p>{playlistDetails.description}</p>
+        <ul>
+          {playlistDetails.tracks.map((track) => (
+            <li key={track.id}>{track.name}</li>
+          ))}
+        </ul>
+      </div>
+    );
   }
 
   return (
-    <PlaylistContainer>
-      {playlists.map((playlist) => (
-        <PlaylistCard key={playlist.id}>
-          <h3>{playlist.name}</h3>
-          <p>{playlist.description}</p>
-        </PlaylistCard>
-      ))}
-    </PlaylistContainer>
+    <div>
+      <h1>Todas as Playlists</h1>
+      <PlaylistList playlists={playlists} />
+    </div>
   );
 };
 
-export default PlaylistList;
+export default PlaylistPage;
