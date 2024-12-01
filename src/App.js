@@ -6,7 +6,8 @@ import LoginLocalPage from "./pages/LoginLocalPage";
 import PlaylistPage from "./pages/PlaylistPage";
 import SearchPlaylistPage from "./pages/SearchPlaylistPage";
 import PlaylistTracksPage from "./pages/PlaylistTracksPage";
-import AddTrackPage from "./pages/AddTrackPage"; // Nova página
+import AddTrackPage from "./pages/AddTrackPage"; 
+import DeletePlaylistPage from "./pages/DeletePlaylistPage";
 import GlobalStyle from "./styles/GlobalStyle";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/playlists/:id" element={<PlaylistPage />} />
           <Route path="/playlists/:id/tracks" element={<PlaylistTracksPage />} />
           <Route path="/playlists/:id/add-track" element={<AddTrackPage />} /> {/* Nova rota */}
+          <Route path="/playlists/:id/delete" element={<DeletePlaylistPage />} /> {/* Nova rota */}
         </Routes>
       </Router>
     </>

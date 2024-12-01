@@ -63,3 +63,13 @@ export const addTrackToPlaylist = async (playlistId, trackData) => {
     throw error.response?.data?.message || "Erro ao adicionar a faixa na playlist";
   }
 };
+
+// Deletar Playlist
+export const deletePlaylist = async (playlistId) => {
+  try {
+    const response = await apiClient.delete(`/playlists/${playlistId}`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.message || "Erro ao deletar a playlist";
+  }
+};
