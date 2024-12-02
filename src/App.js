@@ -12,7 +12,9 @@ import GlobalStyle from "./styles/GlobalStyle";
 import RemoveTrackPage from "./pages/RemoveTrackPage";
 import EditPlaylistPage from "./pages/EditPlaylistPage";
 import UserPlaylistsPage from "./pages/UserPlaylistsPage";
+import CreateSongPage from "./pages/CreateSongPage";
 import AllSongsPage from "./pages/AllSongsPage";
+import SongDetailsPage from "./pages/SongDetailsPage";
 
 const App = () => {
   return (
@@ -31,7 +33,9 @@ const App = () => {
           <Route path="/playlists/:id/song/:songId/remove" element={<RemoveTrackPage />} />
           <Route path="/playlists/:id/edit" element={<EditPlaylistPage />} />
           <Route path="/playlists/user/:userId" element={<UserPlaylistsPage />} />
+          <Route path="/songs/create" element={<CreateSongPage />} />
           <Route path="/songs" element={<AllSongsPage />} />
+          <Route path="/songs/:id" element={<SongDetailsPage />} />
         </Routes>
       </Router>
     </>

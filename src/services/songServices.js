@@ -1,5 +1,23 @@
 import apiClient from "../utils/apiClient";
 
+export const createSong = async (songDetails) => {
+    try {
+      const response = await apiClient.post(
+        "https://mqjnto3qw2.execute-api.us-east-1.amazonaws.com/default/song",
+        songDetails,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error.response?.data?.message || "Erro ao criar a música";
+    }
+};
+  
 export const getAllSongs = async () => {
   try {
     const response = await apiClient.get(
@@ -16,3 +34,21 @@ export const getAllSongs = async () => {
     throw error.response?.data?.message || "Erro ao buscar as músicas";
   }
 };
+
+export const getSongById = async (songId) => {
+    try {
+      const response = await apiClient.get(
+        `https://mqjnto3qw2.execute-api.us-east-1.amazonaws.com/default/song/${songId}`,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error.response?.data?.message || "Erro ao buscar os detalhes da música";
+    }
+};
+
