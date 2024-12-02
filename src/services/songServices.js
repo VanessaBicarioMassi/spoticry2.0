@@ -52,3 +52,38 @@ export const getSongById = async (songId) => {
     }
 };
 
+export const editSong = async (songId, updatedDetails) => {
+    try {
+      const response = await apiClient.patch(
+        `https://mqjnto3qw2.execute-api.us-east-1.amazonaws.com/default/song/${songId}`,
+        updatedDetails,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error.response?.data?.message || "Erro ao editar a música";
+    }
+};
+
+export const deleteSong = async (songId) => {
+    try {
+      const response = await apiClient.delete(
+        `https://mqjnto3qw2.execute-api.us-east-1.amazonaws.com/default/song/${songId}`,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error.response?.data?.message || "Erro ao excluir a música";
+    }
+};
+

@@ -15,6 +15,9 @@ import UserPlaylistsPage from "./pages/UserPlaylistsPage";
 import CreateSongPage from "./pages/CreateSongPage";
 import AllSongsPage from "./pages/AllSongsPage";
 import SongDetailsPage from "./pages/SongDetailsPage";
+import EditSongPage from "./pages/EditSongPage";
+import DeleteSongPage from "./pages/DeleteSongPage";
+
 
 const App = () => {
   return (
@@ -36,6 +39,8 @@ const App = () => {
           <Route path="/songs/create" element={<CreateSongPage />} />
           <Route path="/songs" element={<AllSongsPage />} />
           <Route path="/songs/:id" element={<SongDetailsPage />} />
+          <Route path="/songs/:id/edit" element={<EditSongPage />} />
+          <Route path="/songs/:id/delete" element={<DeleteSongPage />} />
         </Routes>
       </Router>
     </>
